@@ -5,9 +5,9 @@ export function useLocations ({search}) {
     const [locations, setLocations] = useState([])
 
     const fetchLocations = useCallback(async () => {
-        console.log("fetchLocations", search)
         const newLocations = await searchLocationsForCityAndCountry({search})
-        setLocations(newLocations)
+        console.log("fetchLocations", newLocations)
+        setLocations(Array.isArray(newLocations) ? newLocations : [newLocations]);
     }, [search])
 
     return {locations, fetchLocations}

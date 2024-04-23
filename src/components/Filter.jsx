@@ -9,6 +9,8 @@ export function Filter() {
     const cityId = useId()
     const countryId = useId()
 
+    console.log("Filter", locations)
+
     const handleChangeCity = (event) => {
         const newSearch = {city: event.target.value, country: search.country}
         setSearch(newSearch)
@@ -45,11 +47,9 @@ export function Filter() {
                         onChange={handleChangeCountry}
                     />
                 </div>
-                <div></div>
                 <input type="button" value='Search' onClick={handleClickLocation}/>
             </section>
 
-            <h1>{locations}</h1>
             <GeographicLocation locations={locations}></GeographicLocation>
     
         </>
