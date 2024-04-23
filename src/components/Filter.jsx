@@ -45,6 +45,7 @@ export function Filter() {
                         onChange={handleChangeCountry}
                     />
                 </div>
+                <div></div>
                 <input type="button" value='Search' onClick={handleClickLocation}/>
             </section>
 
