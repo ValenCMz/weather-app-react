@@ -1,0 +1,57 @@
+.cont-weather-main{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    
+    background: rgba(255, 255, 255, 0.41);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.2px);
+    -webkit-backdrop-filter: blur(6.2px);
+
+    -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+}
+
+.cont-city{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+}
+
+.cont-weather-main h2{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.cont-weather-main p{
+    margin: 0;
+}
+
+.cont-weatherIcon-main{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.cont-weatherIcon-main svg{
+    width: 200px;
+    height: 200px;
+}
+
+.temperature_humidity-main{
+    display: flex;
+    width: 100%;
+    justify-content: center;    
+    gap: 1rem;
+}
+
+.temperature_humidity-main div{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+

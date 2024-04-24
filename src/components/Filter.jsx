@@ -2,22 +2,18 @@ import { useId } from "react"
 import { useSearch } from "../hooks/useSearch"
 import { useLocations } from "../hooks/useLocations"
 import { GeographicLocation } from "./GeographicLocation"
+import "./Filter.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 export function Filter() {
     const {search, setSearch} = useSearch()
     const {locations, fetchLocations} = useLocations({search})
     const cityId = useId()
-    const countryId = useId()
 
-    console.log("Filter", locations)
 
     const handleChangeCity = (event) => {
         const newSearch = {city: event.target.value, country: search.country}
-        setSearch(newSearch)
-    }
-
-    const handleChangeCountry = (event) => {
-        const newSearch = {city: search.city, country: event.target.value}
         setSearch(newSearch)
     }
 
@@ -27,32 +23,25 @@ export function Filter() {
     }
 
     return(
-        <>
-            <section className="filters">
-                <div>
-                    <label htmlFor="city">City</label>
-                    <input type="text"
+        <section className="main">
+            <h1 className="title-weather">Weather</h1>
+            <section className="filters">              
+                <div className="search-container">
+                <input className="input-city" type="text"
                         id={cityId}
                         name="city"
                         placeholder="City"
                         onChange={handleChangeCity}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="country">Country</label>
-                    <input type="text"
-                        id={countryId}
-                        name="country"
-                        placeholder="Country"
-                        onChange={handleChangeCountry}
-                    />
-                </div>
-                <input type="button" value='Search' onClick={handleClickLocation}/>
+                    />                    
+                <button onClick={handleClickLocation}>
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
+              </div>
             </section>
 
             <GeographicLocation locations={locations}></GeographicLocation>
     
-        </>
+        </ section>
 
     )
  

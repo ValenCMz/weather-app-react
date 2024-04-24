@@ -4,10 +4,9 @@ function App() {
 
 
   return (
-  <>
-    <Filter></Filter>
-  </>
-  
+    <>
+      <Filter></Filter>
+    </>
   )
 }
 
