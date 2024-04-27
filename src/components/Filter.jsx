@@ -13,7 +13,7 @@ export function Filter() {
 
 
     const handleChangeCity = (event) => {
-        const newSearch = {city: event.target.value, country: search.country}
+        const newSearch = {city: event.target.value}
         setSearch(newSearch)
     }
 

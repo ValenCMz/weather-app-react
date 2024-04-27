@@ -2,14 +2,13 @@ import { Sun, Cloudy, DaySunnyOvercast, Lighting, NightAltStormShowers, RainClou
 
 
 export const weatherIcons = {
-    Sun: Sun,
-    Clouds: Cloudy,
+    "800": Sun,
+    "801": Cloudy,
     DaySunnyOvercast: DaySunnyOvercast,
     Lighting: Lighting,
     NightAltStormShowers: NightAltStormShowers,
-    Rain: RainCloudWeather,
-    Snow: Snow,
+    "500": RainCloudWeather,
+    "601": Snow,
     SnowFlack: SnowFlack,
     WeatherPartyCloudyDay: WeatherPartyCloudyDay,
-    Clear: Sun
 }
