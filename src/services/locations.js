@@ -44,8 +44,7 @@ export const searchLocationsCurrent = async ({search}) => {
     try{
         const response = await fetch(`https://api.weatherbit.io/v2.0/current?city=${search.city}&key=${API_KEY}`)
         const json = await response.json()
-
-
+        
         const current = json.data.map(current => ({
             city: current.city_name,
             country: current.country_code,
