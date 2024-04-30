@@ -22,7 +22,7 @@
 }
 
 .search-container button {
-    background-color: #1D053A;
+    background-color: #5e5e5e;
     color: white;
     border: none;
     padding: 7px;
@@ -35,9 +35,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* From https://css.glass */
+    background: rgba(18, 18, 43, 0.62);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.6px);
+    -webkit-backdrop-filter: blur(6.6px);
+    width: 95%;
+    /* Quiero centrar todo el bloque */
+    margin: 1rem auto;
+    
 }
 
 .title-weather{
-    margin: 1rem 0 0 1rem;
-    align-self: flex-start;
+    font-weight: bold;
+    font-size: xx-large;
+    color: #cbe2e7;
+    margin: 1rem 0 0 0;
+    text-transform: uppercase;
+}
+
+
+@media (min-width: 768px){
+    .search-container{
+        width: 45%;
+    }
 }

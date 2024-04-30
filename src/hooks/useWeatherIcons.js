@@ -1,12 +1,11 @@
 import { weatherIcons } from "../services/weatherIcons";
 
-export function useWeatherIcons () {
-    
-    const getWeatherIcon = (weather) => {
-        console.log(weather)
+export function useWeatherIcons() {
+    const getWeatherIconUrl = (weather) => {
+        console.log("weather",weather);
         const icon = weatherIcons[weather];
-        console.log(icon)
-        return icon;
-    }
-    return {getWeatherIcon}
+        return icon; // Devuelve la URL del icono de clima
+    };
+    
+    return { getWeatherIconUrl };
 }

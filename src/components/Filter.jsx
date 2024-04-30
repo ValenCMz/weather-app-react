@@ -8,9 +8,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 export function Filter() {
     const {search, setSearch} = useSearch()
-    const {locations, fetchLocations} = useLocations({search})
+    const {locations, currents,fetchLocations, fetchLocationsCurrent } = useLocations({search})
     const cityId = useId()
-
 
     const handleChangeCity = (event) => {
         const newSearch = {city: event.target.value}
@@ -20,9 +19,10 @@ export function Filter() {
     const handleClickLocation = (event) => {
         event.preventDefault()
         fetchLocations(search)
+        fetchLocationsCurrent(search)
     }
 
-    return(
+    return(        
         <section className="main">
             <h1 className="title-weather">Weather</h1>
             <section className="filters">              
@@ -38,8 +38,7 @@ export function Filter() {
                 </button>
               </div>
             </section>
-
-            <GeographicLocation locations={locations}></GeographicLocation>
+            <GeographicLocation locations={locations} currents={currents}></GeographicLocation>
     
         </ section>
 

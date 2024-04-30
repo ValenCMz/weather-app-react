@@ -1,80 +1,99 @@
 /* eslint-disable react/prop-types */
-import { useWeatherIcons } from "../hooks/useWeatherIcons"
 import "./GeographicLocation.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTemperatureHigh, faWind } from '@fortawesome/free-solid-svg-icons'
 import { useId } from "react"
+import { WeatherIcon } from "./WeatherIcon"
+
+const getDayOfWeek = (dateString) => {
+    if(dateString.includes(":")){
+        dateString = dateString.split(":")[0]
+    }
+    const date = new Date(dateString)
+    const dayOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    const day = date.getDay()
+    return dayOfWeek[day]
+}
 
 // eslint-disable-next-line react/prop-types
-export function LocationMain({ locations }) {
-    const { getWeatherIcon } = useWeatherIcons()
-    const locationId = useId()
-    console.log("LocationMain", locations)
-
+export function LocationMain({ currents }) {
+    const currentId = useId()
     return (
-        <section className="cont-weather-main">
-                        <div className="">
-                            {locations.map(location => (
-                                <div key={locationId}>
-                                    <div className="cont-city">
-                                        <h2>{location.data.city.city}</h2>    
-                                        <p>{location.data.city.country}</p> 
-                                        <p>{location.data.mappedList[0].datetime}</p>
-                                        <div className="temperature_humidity-main">
-                                            <div>
-                                                <FontAwesomeIcon icon={faTemperatureHigh} />
-                                                <p>{Math.round(location.data.mappedList[0].temp)}°C</p>  
-                                            </div>
-                                            <div>
-                                                <FontAwesomeIcon icon={faWind} />
-                                                <p>{location.data.mappedList[0].wind}m/s</p>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    
-                                    <div className="cont-weatherIcon-main">
-                                        <div>
-                                            {/* Solo estoy renderizando la imagen con del primer clima */}
-                                            {getWeatherIcon(location.data.mappedList[0].weather.code)()}
-                                        </div>
-                                    </div>    
-                                
-                                </div>
-                            ))}
+            <div>
+                {currents.map(current => (
+                    <div key={currentId}>
+                        <div className="cont-city">
+                            <h2>{current.city}</h2>    
+                            <p>{current.country}</p>                         
+                            <p>{getDayOfWeek(current.datetime)}</p>                    
                         </div>
-            </section>
+                        
+                        <div className="cont-weatherIcon-main">
+                            <div>
+                                {<WeatherIcon icon={current.weather.icon}></WeatherIcon>}
+                            </div>
+                        </div>    
+
+                        <div className="temperature_humidity-main">
+                                <div>
+                                    <FontAwesomeIcon icon={faTemperatureHigh} />
+                                    <p><span>{Math.round(current.temp)}°C</span></p>
+                                </div>
+                                <div>
+                                    <FontAwesomeIcon icon={faWind} />
+                                    <p>{Math.round(current.wind * 3.6)} Km h</p>
+                                </div>
+                            </div>
+                    </div>
+                ))}
+            </div>
+            
     )
 }
 
 
 /* eslint-disable react/prop-types */
-export function ListOfLocations({ locations }) {
-    console.log("ListOfLocations", locations)
+export function ListOfLocations({ locations }) {    
     return (
-        <>
-            {/* Tengo que recorrer desde la pos 1 hasta la ultima */}
- 
-            {/* {<ul className="cont_location">
-                {locations.map.slice(1,5)(location => (
-                    <li key={location.data.city.id}>
-                        <p>{location}</p>
-                    </li>
+        <ul className="listoflocations">
+            {locations[0].data.mappedList.map((location, index) => (
+                    <li key={index}>
+                        <p>{getDayOfWeek(location.datetime)}</p>
+                        <div>
+                            {<WeatherIcon icon={location.weather.icon}></WeatherIcon>}
+                        </div>
 
-                ))}
-            </ul>} */}
-            
-        </>
+                        <div>
+                            <p><span style={{ color: '#cf023b' }}>{Math.round(location.temp_max)}°C</span> / <span style={{ color: '#028c9e' }}>{Math.round(location.temp_min)}°C</span></p>
+                        </div>
+
+                        <div className="listoflocations-wind">                                    
+                            <FontAwesomeIcon icon={faWind} />
+                            <p>{Math.round(location.wind * 3.6)} Km h</p>
+                        </div>
+                    </li>                        
+            ))}
+        </ul>
     );
 }
 
-export function GeographicLocation({ locations }) {
-    const hasLocations = locations?.length > 0;
+export function GeographicLocation({ locations, currents }) {
+    const hasLocations = locations?.length > 0 || currents?.length > 0;
+
     return (
-        hasLocations ? (<ListOfLocations locations={locations}></ListOfLocations> && <LocationMain locations={locations}></LocationMain>)
-            : (
-                <p>No locations found</p>
-            )
+        hasLocations ? (
+            <>
+                <div className="cont-weather-main">
+                    <LocationMain currents={currents} />
+                </div>
+                <div className="list-of-locations-container">
+                    <ListOfLocations locations={locations} />
+                </div>
+            </>
+        )
+        : (
+            <p>No locations found</p>
+        )
     );
 }
 
