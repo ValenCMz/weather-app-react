@@ -56,7 +56,7 @@ export function LocationMain({ currents }) {
 export function ListOfLocations({ locations }) {    
     return (
         <ul className="listoflocations">
-            {locations[0].data.mappedList.map((location, index) => (
+            {locations && locations[0] && locations[0].data.mappedList && locations[0].data.mappedList.map((location, index) => (
                     <li key={index}>
                         <p>{getDayOfWeek(location.datetime)}</p>
                         <div>
