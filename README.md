@@ -9,3 +9,6 @@ Esta es una aplicación sencilla del clima construida con React, que obtiene dat
 - Interfaz amigable con un diseño limpio y responsive.
 
 [Web](https://valencmz.github.io/weather-app-react/).
+
+![Caputra](src/assets/weather-app-react.jpg)
+
